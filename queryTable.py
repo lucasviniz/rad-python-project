@@ -127,13 +127,26 @@ if x=='2':
     select_table_conta(connection, table_consulta_conta)
 
 if x=='3':
-    cpf=input("INFORME O SEU CPF: ")
-    table_consulta_pessoa = """SELECT * FROM Pessoa WHERE cpf = '\n""" + cpf + "  '"
-    select_table_one_pessoa(connection, table_consulta_pessoa)
+    opcao=input("Por qual parametro deseja pesquisar: 1-cpf ou 2-id")
+    if opcao=='1':
+        cpf=input("INFORME O SEU CPF: ")
+        table_consulta_pessoa = """SELECT * FROM Pessoa WHERE cpf = '\n""" + cpf + "  '"
+        select_table_one_pessoa(connection, table_consulta_pessoa)
+    if opcao=='2':
+        idP=input("INFORME O SEU ID: ")
+        table_consulta_pessoa = """SELECT * FROM Pessoa WHERE id = '\n""" + idP + "  '"
+        select_table_one_pessoa(connection, table_consulta_pessoa)
 
 if x=='4':
-    numConta=input("INFORME O SEU CPF: ")
-    table_consulta_pessoa = """SELECT * FROM Pessoa WHERE cpf = '\n""" + numConta + "  '"
-    select_table_one_conta(connection, table_consulta_pessoa)
+    opcao=("Por qual parametro deseja pesquisar: 1-numero da conta ou 2-id")
+    if opcao=='1':
+        numConta=input("INFORME O NUMERO DA SUA CONTA: ")
+        table_consulta_conta = """SELECT * FROM Conta WHERE numero = '\n""" + numConta + "  '"
+        select_table_one_conta(connection, table_consulta_conta)
+    if opcao=='2':
+        numConta=input("INFORME O NUMERO DA SUA CONTA: ")
+        table_consulta_conta = """SELECT * FROM Conta WHERE numero = '\n""" + numConta + "  '"
+        select_table_one_conta(connection, table_consulta_conta)
+
 
 connection.close()
