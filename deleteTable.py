@@ -46,8 +46,8 @@ if x == '3':
     delete_table(connection, Delete_Line_Pessoa)
 
 if x == '4':
-    idPessoa = input("Digite o numero da conta que deseja excluir: ")
-    Delete_Line_Pessoa = """DELETE FROM Conta WHERE id =  """ + idPessoa
+    idConta = input("Digite o id da conta que deseja excluir: ")
+    Delete_Line_Pessoa = """DELETE FROM Conta WHERE id =  """ + idConta
     delete_table(connection, Delete_Line_Pessoa)
 
 

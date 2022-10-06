@@ -73,7 +73,7 @@ def select_table_conta(connection, query):
         lista_consulta = cursor.fetchall()
         with open('ArquivosConsulta/ConsultaCompleta/conta.txt','w') as outFile:
             for linha in lista_consulta:
-                outFile.write(str(linha[0])+"  "+str(linha[1]).strip()+"  "+str(linha[2])+"  "+str(linha[3])+"  "+str(linha[4])+"  "+str(linha[5])+"  "+str(linha[6])+"\n")
+                outFile.write(str(linha[0])+"  "+str(linha[1]).strip()+"  "+str(linha[2])+"  "+str(linha[3])+"  "+str(linha[4])+"  "+str(linha[5])+"\n")
                 print(linha)
 
         cursor.close()
@@ -98,9 +98,8 @@ def select_table_one_conta(connection, query):
                 print("Nome do meio: ", linha[3])
                 print("Sobrenome: ", linha[4])
                 print("Idade: ", linha[5])
-                print("Conta: ", linha[6])
                 outFile.write("CONSULTA\n")
-                outFile.writelines("  ID: "+str(linha[0]) + "\n" "  CPF: " + str(linha[1]).strip() + "\n" + "  PRIMEIRO NOME: " + str(linha[2]) + "\n" + "  MEIONOME: " + str(linha[3]) + "\n" + "  SOBRENOME: " + str(linha[4]) + "\n" + "  IDADE: " + str(linha[5]) + "\n" + "  CONTA: " + str(linha[6]) + "\n\n\n")
+                outFile.writelines("  ID: "+str(linha[0]) + "\n" "  AGENCIA: " + str(linha[1]).strip() + "\n" + "  NUMERO DA CONTA: " + str(linha[2]) + "\n" + "  SALDO: " + str(linha[3]) + "\n" + "  GERENTE: " + str(linha[4]) + "\n" + "  TITULAR: " + str(linha[5]) + "\n\n\n")
 
         cursor.close()
     except OperationalError as e:
@@ -123,11 +122,11 @@ if x=='1':
     table_consulta_pessoa = """SELECT * FROM Pessoa"""
     select_table_pessoa(connection, table_consulta_pessoa)
 if x=='2':
-    table_consulta_conta = """SELECT * FROM Pessoa"""
+    table_consulta_conta = """SELECT * FROM Conta"""
     select_table_conta(connection, table_consulta_conta)
 
 if x=='3':
-    opcao=input("Por qual parametro deseja pesquisar: 1-cpf ou 2-id")
+    opcao=input("Por qual parametro deseja pesquisar:\n1 - CPF ou 2 - ID: ")
     if opcao=='1':
         cpf=input("INFORME O SEU CPF: ")
         table_consulta_pessoa = """SELECT * FROM Pessoa WHERE cpf = '\n""" + cpf + "  '"
@@ -138,14 +137,14 @@ if x=='3':
         select_table_one_pessoa(connection, table_consulta_pessoa)
 
 if x=='4':
-    opcao=("Por qual parametro deseja pesquisar: 1-numero da conta ou 2-id")
+    opcao=input("Por qual parametro deseja pesquisar:\n1 - Numero da conta ou 2-ID: ")
     if opcao=='1':
         numConta=input("INFORME O NUMERO DA SUA CONTA: ")
-        table_consulta_conta = """SELECT * FROM Conta WHERE numero = '\n""" + numConta + "  '"
+        table_consulta_conta = """SELECT * FROM Conta WHERE numero = '""" + numConta + "'"
         select_table_one_conta(connection, table_consulta_conta)
     if opcao=='2':
-        numConta=input("INFORME O NUMERO DA SUA CONTA: ")
-        table_consulta_conta = """SELECT * FROM Conta WHERE numero = '\n""" + numConta + "  '"
+        idC=input("INFORME O ID DA SUA CONTA: ")
+        table_consulta_conta = """SELECT * FROM Conta WHERE id = '""" + idC + "'"
         select_table_one_conta(connection, table_consulta_conta)
 
 
