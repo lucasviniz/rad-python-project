@@ -34,6 +34,7 @@ table_Pessoa_query = """CREATE TABLE Pessoa(
     primeiroNome varchar(50) NOT NULL,
     meioNome varchar(50),
     sobrenome varchar(50) NOT NULL,
+    cargo varchar(50),
     idade int CONSTRAINT idade_positiva CHECK (idade >= 0),
     conta int
 )
@@ -48,7 +49,19 @@ table_Conta_query = """CREATE TABLE Conta(
     titular int
 )
 """
+
+table_Usuario_query = """CREATE TABLE Usuario(
+    id SERIAL PRIMARY KEY,
+    email varchar(100),
+    login varchar(9),
+    senha varchar(50),
+    pessoa_id int,
+    FOREIGN KEY(pessoa_id) REFERENCES Pessoa(id)
+)
+"""
+
 create_table(connection, table_Pessoa_query)
+create_table(connection, table_Usuario_query)
 create_table(connection, table_Conta_query)
 
 
